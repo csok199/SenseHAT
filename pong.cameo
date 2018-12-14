@@ -4,6 +4,8 @@ sense = SenseHat()
 
 white = (255, 255, 255)
 blue = (0, 0, 255)
+red = (255, 0, 0)
+
 
 bat_y = 4
 ball_position = [3,3]
@@ -35,7 +37,7 @@ def draw_ball():
     if ball_position[0] == 1 and (bat_y - 1) <= ball_position[1] <= (bat_y +1):
         ball_velocity[0] = -ball_velocity[0]
     if ball_position[0] == 0:
-        sense.show_message("You Lose")
+        sense.show_message("Game Over", text_colour = white, back_colour = red)
         
 
     
@@ -43,8 +45,10 @@ def draw_ball():
 # Main Program
 while True:
     draw_bat()
-    sleep(0.5)
+    sleep(0.15)
     sense.stick.direction_up = move_up
     sense.clear(0, 0, 0)
     sense.stick.direction_down = move_down
     draw_ball()
+    
+
